@@ -26,38 +26,24 @@ const getImg = function (query) {
           }
         }
       });
+
+      const arrViewBtn = document.querySelectorAll(
+        ".btn-group button:first-child",
+      );
+      arrViewBtn.forEach((viewBtn, index) => {
+        viewBtn.addEventListener("click", function () {
+          const modalBody = document.querySelector(".modal-body");
+          const modalTitle = document.querySelector(".modal-title");
+          modalBody.innerHTML = `<img class="img-fluid object-fit-cover" src=${data.photos[index].src.medium} /></div>`;
+          modalTitle.innerText = data.photos[index].photographer;
+        });
+      });
     })
+
     .catch((err) => {
       console.log("ERRORE! non riusciamo a contattare l'API", err);
     });
 };
-// const getImgKittens = function () {
-//   fetch(kittensURL, {
-//     headers: {
-//       Authorization: "wr9VHeJ8BCY4mdq0eIvLCG81ZSoedLSi0g662bAtBjgwNfADvEfr9bR6",
-//     },
-//   })
-//     .then((response) => {
-//       if (response.ok) {
-//         console.log("Esiste un file criceti, procedi", response.status);
-//         return response.json();
-//       } else {
-//         throw new Error("ERRORE! non trovo file con immagini di criceti");
-//       }
-//     })
-//     .then((kittens) => {
-//       const loadKittensBtn = document.querySelector(".btn-secondary");
-//       const cardImg = document.querySelectorAll(".card img");
-//       loadKittensBtn.addEventListener("click", function () {
-//         cardImg.forEach((img, index) => {
-//           if (kittens.photos[index]) img.src = kittens.photos[index].src.medium;
-//         });
-//       });
-//     })
-//     .catch((err) => {
-//       console.log("ERRORE! non riusciamo a contattare l'API", err);
-//     });
-// };
 
 const loadHamsterBtn = document.querySelector(".btn-primary");
 loadHamsterBtn.addEventListener("click", function () {

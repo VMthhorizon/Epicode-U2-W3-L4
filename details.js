@@ -13,6 +13,9 @@ fetch("https://api.pexels.com/v1/photos/" + imgId, {
     }
   })
   .then((data) => {
+    console.log(data);
+
+    document.body.style.backgroundColor = data.avg_color;
     img.src = data.src.medium;
     document.querySelector(".card-title").innerHTML =
       `<a class="card-title text-danger" href="${data.photographer_url}">Profilo Fotografo</a>`;
